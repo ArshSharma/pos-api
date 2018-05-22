@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="employee")
 public class Employee {
@@ -27,7 +29,7 @@ public class Employee {
 	private String password;
 	@Column(name="role")
 	private String role;
-	
+	@JsonManagedReference
 	@OneToMany(mappedBy="byEmployee", fetch=FetchType.EAGER)
 	private List<Drawer> drawer = new ArrayList<Drawer>();
 	
