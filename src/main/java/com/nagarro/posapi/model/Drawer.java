@@ -29,9 +29,9 @@ public class Drawer {
 	private Employee byEmployee;
 
 	@Column(name = "opening_balance")
-	private float openingBalance;
+	private double openingBalance;
 	@Column(name = "closing_balance")
-	private float closingBalance;
+	private double closingBalance;
 	@Column(name = "currentdate")
 	private String currentDate;
 
@@ -55,19 +55,19 @@ public class Drawer {
 		this.id = id;
 	}
 
-	public float getOpeningBalance() {
+	public double getOpeningBalance() {
 		return openingBalance;
 	}
 
-	public void setOpeningBalance(float openingBalance) {
+	public void setOpeningBalance(double openingBalance) {
 		this.openingBalance = openingBalance;
 	}
 
-	public float getClosingBalance() {
+	public double getClosingBalance() {
 		return closingBalance;
 	}
 
-	public void setClosingBalance(float closingBalance) {
+	public void setClosingBalance(double closingBalance) {
 		this.closingBalance = closingBalance;
 	}
 
