@@ -32,9 +32,18 @@ public class Employee {
 	@JsonManagedReference
 	@OneToMany(mappedBy="byEmployee", fetch=FetchType.EAGER)
 	private List<Drawer> drawer = new ArrayList<Drawer>();
+	@JsonManagedReference
+	@OneToMany(mappedBy="employee", fetch=FetchType.EAGER)
+	private List<Order> Order = new ArrayList<Order>();
 	
 	
 	
+	public List<Order> getOrder() {
+		return Order;
+	}
+	public void setOrder(List<Order> order) {
+		Order = order;
+	}
 	public List<Drawer> getDrawer() {
 		return drawer;
 	}

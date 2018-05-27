@@ -13,11 +13,16 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 	public List<Product> getAllProducts(){
-		return productRepository.findAll();
+		return  productRepository.findAll();
 	}
 	
 	public void addProduct(Product product) {
 		productRepository.save(product);
+	}
+
+	public List<Product> searchProducts(String search) {
+		
+		return productRepository.searchProducts(search,search,search);
 	}
 	
 	

@@ -1,6 +1,9 @@
 package com.nagarro.posapi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,7 @@ import com.nagarro.posapi.model.Drawer;
 import com.nagarro.posapi.service.DrawerService;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value="employee/{employeeId}/drawer")
 public class DrawerController {
 	
@@ -31,6 +35,10 @@ public class DrawerController {
 	@RequestMapping(method=RequestMethod.PUT)
 	public void setClosingDrawer(@RequestBody Drawer drawer, @PathVariable int employeeId) {
 		drawerService.setClosingDrawer(drawer, employeeId);
+	}
+	@RequestMapping(value="/all" ,method=RequestMethod.GET)
+	public List<Drawer> getDrawerDetails(@PathVariable int employeeId) {
+		return drawerService.getDrawerDetails(employeeId);
 	}
 
 }

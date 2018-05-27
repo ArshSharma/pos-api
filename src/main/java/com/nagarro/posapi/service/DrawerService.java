@@ -1,11 +1,14 @@
 package com.nagarro.posapi.service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nagarro.posapi.model.Customer;
 import com.nagarro.posapi.model.Drawer;
 import com.nagarro.posapi.model.Employee;
 import com.nagarro.posapi.repository.DrawerRepository;
@@ -54,5 +57,11 @@ public class DrawerService {
 			drawerRepository.save(drawerOld);
 		}
 
+	}
+	public List<Drawer> getDrawerDetails(int employeeId) {
+		Employee employee = employeeRepository.findOne(employeeId);
+		List<Drawer> drawer= new ArrayList<>();
+		drawer.addAll(drawerRepository.getDrawerDetails(employee));
+		return drawer;
 	}
 }
