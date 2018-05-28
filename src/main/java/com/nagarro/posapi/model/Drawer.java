@@ -25,7 +25,7 @@ public class Drawer {
 	private int id;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference("drawer")
 	private Employee byEmployee;
 
 	@Column(name = "opening_balance")

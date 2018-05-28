@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nagarro.posapi.model.Customer;
 import com.nagarro.posapi.model.Drawer;
 import com.nagarro.posapi.model.Employee;
 import com.nagarro.posapi.repository.DrawerRepository;

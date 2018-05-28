@@ -12,10 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="employee")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Employee {
 	@Id
 	@Column(name="id")
@@ -29,20 +31,21 @@ public class Employee {
 	private String password;
 	@Column(name="role")
 	private String role;
-	@JsonManagedReference
+	@JsonManagedReference("drawer")
 	@OneToMany(mappedBy="byEmployee", fetch=FetchType.EAGER)
 	private List<Drawer> drawer = new ArrayList<Drawer>();
-	@JsonManagedReference
-	@OneToMany(mappedBy="employee", fetch=FetchType.EAGER)
-	private List<Order> Order = new ArrayList<Order>();
+	
+	@JsonManagedReference("order")
+	@OneToMany(mappedBy="byRefEmployee")
+	private List<Order> order = new ArrayList<Order>();
 	
 	
 	
 	public List<Order> getOrder() {
-		return Order;
+		return order;
 	}
 	public void setOrder(List<Order> order) {
-		Order = order;
+		this.order = order;
 	}
 	public List<Drawer> getDrawer() {
 		return drawer;

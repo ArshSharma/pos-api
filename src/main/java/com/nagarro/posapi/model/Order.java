@@ -1,17 +1,23 @@
 package com.nagarro.posapi.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="orders")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Order {
 	@Id
 	@Column(name="id")
@@ -24,6 +30,37 @@ public class Order {
 	@Column(name="total")
 	private double total;
 	
+	@ManyToOne
+	@JsonBackReference("efgh")
+	private Customer byCustomer;
+	
+	@ManyToOne
+	@JsonBackReference("order")
+	private Employee byRefEmployee;
+
+	@OneToMany(mappedBy="byOrder")
+//	@JsonManagedReference("abcd")
+	private List<Cart> cart;
+	
+	
+	
+	
+	public Customer getByCustomer() {
+		return byCustomer;
+	}
+
+	public Employee getByRefEmployee() {
+		return byRefEmployee;
+	}
+
+	public void setByRefEmployee(Employee byRefEmployee) {
+		this.byRefEmployee = byRefEmployee;
+	}
+
+	public void setByCustomer(Customer byCustomer) {
+		this.byCustomer = byCustomer;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -56,28 +93,16 @@ public class Order {
 		this.total = total;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+//	public List<Cart> getCart() {
+//		return cart;
+//	}
+
+	public void setCart(List<Cart> cart) {
+		this.cart = cart;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	@ManyToOne
-	@JsonBackReference
-	private Employee employee;
 	
-	@ManyToOne
-	@JsonBackReference
-	private Customer customer;
+
+	
 
 }

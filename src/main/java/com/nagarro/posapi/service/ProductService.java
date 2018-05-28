@@ -25,5 +25,9 @@ public class ProductService {
 		return productRepository.searchProducts(search,search,search);
 	}
 	
+	public Product getProduct(int id) {
+		return productRepository.findOne(id);
+	}
+	
 	
 }
